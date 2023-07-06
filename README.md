@@ -1,1 +1,2 @@
-# car_wash
+# Car wash app
+The initial repository
