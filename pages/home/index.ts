@@ -27,15 +27,26 @@ Page({
     // 地图标记点
     markers: [
       {
-        latitude: 36.14508,
-        longitude: 120.43294,
+        latitude: 31.292698,
+        longitude: 120.748676,
         iconPath: '../../assets/icons/market.png',
         width: '140rpx',
         height: '140rpx',
         id: 1,
-        name: '中海国际自助洗车一号机',
-        address: '李沧区万年泉路8888号',
+        name: 'Hans自助洗车一号机',
+        address: '苏州市虎丘区苏州市工业园区朝阳路33号',
       },
+      // {
+      //   latitude: 31.321881,
+      //   longitude: 120.664116,
+      //   iconPath: '../../assets/icons/market.png',
+      //   width: '140rpx',
+      //   height: '140rpx',
+      //   id: 1,
+      //   name: 'Hans自助洗车二号机',
+      //   address: '苏州市吴中区金鸡湖街道现代大道与星都街交汇处',
+      // },
+
     ],
     // 地图其他配置
     mapOptions: {
@@ -172,4 +183,18 @@ Page({
       url: '/pages/service/index',
     });
   },
+
+  // get to the current location
+  async relocate() {
+    const location: IObject = await getLocation();
+    if (location) {
+      wx.setStorageSync(StorageEnum.LOCATION_DATA, location);
+      this.setData({
+        longitude: location.longitude,
+        latitude: location.latitude,
+        locationed: true,
+      });
+    }
+  },
+
 });
